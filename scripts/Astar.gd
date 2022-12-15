@@ -4,15 +4,13 @@ const Nodes = preload("res://scripts/Nodes.gd")
 
 const GRID_SIZE=32
 
-onready var targetNode = get_node("/root/World/Target")
+onready var targetNode = get_node("/root/World/PlayerEntity")
 onready var aStarBody = get_node("AstarBody")
 onready var playerBody = get_node("PlayerBody")
 onready var aStarRay = get_node("AstarBody/AstarRay")
 
-
 func getDistance(a, b):
 		return abs(b.x - a.x) + abs(b.y - a.y);
-
 
 func getNeighboursCollision(pos):
 	var dir=[
@@ -36,6 +34,10 @@ func getNeighboursCollision(pos):
 	return neighbors
 
 const inputs={
+	'up' : Vector2.UP,
+	'down': Vector2.DOWN,
+	'left': Vector2.LEFT,
+	'right': Vector2.RIGHT,
 	'step': null
 }
 
@@ -61,10 +63,8 @@ func pathFind(start, stop):
 			return next.place
 		
 		for step in getNeighboursCollision(current.place):
-			
-			
+
 			var inClosed=false
-			
 			for fail in closed:
 				if(fail.place.x==step.x && fail.place.y==step.y):
 					inClosed=true
@@ -106,15 +106,14 @@ func _unhandled_input(event):
 			move(direction)
 
 func move(direction):
-	if inputs[direction]==null:
-		playerBody.position=pathFind(playerBody.position,targetNode.position)
-		print()
-		print("Current Position: ", playerBody.position)
-		#print("Target Position: ", targetNode.position)
-		#print("Distance to Target: ", getDistance(position,targetNode.position))
-		print("Available Neighbors of Current Position: ", getNeighboursCollision(playerBody.position))
-		print("Suggested Next Step: ", pathFind(playerBody.position,targetNode.position))
+	playerBody.position=pathFind(playerBody.position,targetNode.position)
+	print()
+	print("Current Position: ", playerBody.position)
+	#print("Target Position: ", targetNode.position)
+	#print("Distance to Target: ", getDistance(position,targetNode.position))
+	print("Available Neighbors of Current Position: ", getNeighboursCollision(playerBody.position))
+	print("Suggested Next Step: ", pathFind(playerBody.position,targetNode.position))
 
 
 #func _physics_process(delta):
-	#position=pathFind(position,targetNode.position)
+#	playerBody.position=pathFind(playerBody.position,targetNode.position)
