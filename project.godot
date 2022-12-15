@@ -9,13 +9,13 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "",
-"class": "GitAPI",
-"language": "NativeScript",
-"path": "res://addons/godot-git-plugin/git_api.gdns"
+"base": "Reference",
+"class": "Nodes",
+"language": "GDScript",
+"path": "res://scripts/Nodes.gd"
 } ]
 _global_script_class_icons={
-"GitAPI": ""
+"Nodes": ""
 }
 
 [application]
