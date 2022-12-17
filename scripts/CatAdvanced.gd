@@ -14,9 +14,16 @@ const inputs={
 	'ui_right': Vector2.RIGHT,
 }
 
+
+func _unhandled_input(_event):
+	idle=false
+	
+var idle=true
 func _physics_process(_delta):
 	if !tween.is_active():
-		_animated_sprite.play("idle")
+		if idle:
+			_animated_sprite.play("idle")
+		idle=true
 		var motion_vector = Vector2()
 		for dir in inputs:
 			if Input.is_action_pressed(dir):
