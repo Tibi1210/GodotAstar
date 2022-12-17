@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scripts/CatAdvanced.gd" type="Script" id=1]
+[ext_resource path="res://assets/elfike.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 19 ) ],
+"loop": true,
+"name": "elfidle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 22 ), SubResource( 23 ) ],
+"loop": true,
+"name": "elfleft",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 20 ), SubResource( 21 ) ],
+"loop": true,
+"name": "elfy",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 16, 16 )
+
+[node name="Cat" type="KinematicBody2D"]
+position = Vector2( 128, 32 )
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 9 )
+animation = "elfidle"
+playing = true
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 16, 16 )
+shape = SubResource( 10 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 16, 16 )
+cast_to = Vector2( 0, 32 )
+
+[node name="Tween" type="Tween" parent="."]

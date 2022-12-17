@@ -8,7 +8,7 @@ onready var targetNode = get_node("/root/World/PlayerEntity")
 onready var aStarBody = get_node("AstarBody")
 onready var playerBody = get_node("PlayerBody")
 onready var aStarRay = get_node("AstarBody/AstarRay")
-
+onready var tween = get_node("Tween")
 
 func getDistance(a, b):
 		return abs(b.x - a.x) + abs(b.y - a.y);
@@ -33,14 +33,6 @@ func getNeighboursCollision(pos):
 			neighbors.append(aStarBody.position + vector_pos)
 	
 	return neighbors
-
-const inputs={
-	'up' : Vector2.UP,
-	'down': Vector2.DOWN,
-	'left': Vector2.LEFT,
-	'right': Vector2.RIGHT,
-	'step': null
-}
 
 func pathFind(start, stop):
 	var next=null
@@ -101,22 +93,10 @@ func pathSteps(start, stop):
 	return steps[steps.size()-1]
 
 
-func _unhandled_input(event):
-	for direction in inputs.keys():
-		if event.is_action_pressed(direction):
-			move(direction)
-
-func move(_direction):
-	playerBody.position=pathFind(playerBody.position,targetNode.position)
-	#print()
-	#print("Current Position: ", playerBody.position)
-	#print("Target Position: ", targetNode.position)
-	#print("Distance to Target: ", getDistance(position,targetNode.position))
-	#print("Available Neighbors of Current Position: ", getNeighboursCollision(playerBody.position))
-	#print("Suggested Next Step: ", pathFind(playerBody.position,targetNode.position))
+func _physics_process(_delta):
+	if !tween.is_active():
+		var new_position=pathFind(playerBody.position,targetNode.position)
+		tween.interpolate_property ( playerBody, 'position', playerBody.position, new_position, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.start()
 
 
-#func _physics_process(delta):
-	
-	
-	#playerBody.position=pathFind(playerBody.position,targetNode.position)
