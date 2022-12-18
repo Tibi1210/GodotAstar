@@ -1,4 +1,4 @@
-class_name Nodes
+class_name MyNodes
 	
 var place
 var parent

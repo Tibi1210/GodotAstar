@@ -1,6 +1,6 @@
 extends Node2D
 
-const Nodes = preload("res://scripts/Nodes.gd")
+const MyNodes = preload("res://scripts/MyNodes.gd")
 
 const GRID_SIZE=32
 
@@ -39,7 +39,7 @@ func pathFind(start, stop):
 	var open=[]
 	var closed=[]
 	
-	var startNode=Nodes.new(start,null,0,getDistance(start,stop))
+	var startNode=MyNodes.new(start,null,0,getDistance(start,stop))
 	open.append(startNode)
 	
 	while(!open.empty()):
@@ -74,7 +74,7 @@ func pathFind(start, stop):
 					inOpenAt+=1
 					
 			if(!inOpen):
-				open.append(Nodes.new(step,current,newGcost,getDistance(step,stop)))
+				open.append(MyNodes.new(step,current,newGcost,getDistance(step,stop)))
 			if(inOpen&&newGcost<open[inOpenAt].gcost):
 				open[inOpenAt].setGcost(newGcost)
 				open[inOpenAt].setHcost(getDistance(step, stop))

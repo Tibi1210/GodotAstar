@@ -10,12 +10,24 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
-"class": "Nodes",
+"class": "CharcterAnimationChange",
 "language": "GDScript",
-"path": "res://scripts/Nodes.gd"
+"path": "res://scripts/CharacterAnimationChange.gd"
+}, {
+"base": "Reference",
+"class": "MyNodes",
+"language": "GDScript",
+"path": "res://scripts/MyNodes.gd"
+}, {
+"base": "Reference",
+"class": "PlayerMovement",
+"language": "GDScript",
+"path": "res://scripts/PlayerMovement.gd"
 } ]
 _global_script_class_icons={
-"Nodes": ""
+"CharcterAnimationChange": "",
+"MyNodes": "",
+"PlayerMovement": ""
 }
 
 [application]
