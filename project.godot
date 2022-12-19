@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "AstarFinal",
+"language": "GDScript",
+"path": "res://scripts/classes/AstarFinal.gd"
+}, {
+"base": "Reference",
 "class": "CharcterAnimationChange",
 "language": "GDScript",
 "path": "res://scripts/CharacterAnimationChange.gd"
@@ -17,14 +22,15 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "MyNodes",
 "language": "GDScript",
-"path": "res://scripts/MyNodes.gd"
+"path": "res://scripts/classes/MyNodes.gd"
 }, {
 "base": "Reference",
 "class": "PlayerMovement",
 "language": "GDScript",
-"path": "res://scripts/PlayerMovement.gd"
+"path": "res://scripts/classes/PlayerMovement.gd"
 } ]
 _global_script_class_icons={
+"AstarFinal": "",
 "CharcterAnimationChange": "",
 "MyNodes": "",
 "PlayerMovement": ""
@@ -34,6 +40,8 @@ _global_script_class_icons={
 
 config/name="GridMapRepresentation"
 run/main_scene="res://scenes/World.tscn"
+boot_splash/show_image=false
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
 [display]

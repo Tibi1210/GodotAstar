@@ -1,12 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/TX Tileset Grass.png" type="Texture" id=1]
-[ext_resource path="res://scenes/Ghost.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Kirby.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/TX Props.png" type="Texture" id=3]
 [ext_resource path="res://scenes/AstarBody.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scripts/AstarAuto.gd" type="Script" id=5]
+[ext_resource path="res://scripts/AstarAutoElfy.gd" type="Script" id=5]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/Cat.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Elfy.tscn" type="PackedScene" id=8]
 
 [sub_resource type="TileSet" id=1]
@@ -141,10 +140,7 @@ position = Vector2( 32, 32 )
 [node name="Tween" type="Tween" parent="AstarEntity"]
 
 [node name="PlayerEntity" parent="." instance=ExtResource( 6 )]
-position = Vector2( 704, 384 )
-
-[node name="Cat" parent="." instance=ExtResource( 7 )]
-position = Vector2( 224, 160 )
+position = Vector2( 416, 192 )
 
 [node name="Elfy" parent="." instance=ExtResource( 8 )]
 position = Vector2( 160, 32 )

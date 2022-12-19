@@ -1,14 +1,24 @@
-extends Node2D
+class_name AstarFinal
 
 const MyNodes = preload("res://scripts/classes/MyNodes.gd")
 
 const GRID_SIZE=32
 
-onready var targetNode = get_node("/root/World/PlayerEntity")
-onready var aStarBody = get_node("AstarBody")
-onready var playerBody = get_node("PlayerBody")
-onready var aStarRay = get_node("AstarBody/AstarRay")
-onready var tween = get_node("Tween")
+var targetNode 
+var aStarBody 
+var playerBody
+var sprite
+var aStarRay 
+var tween 
+
+func _init(target,aBod,pBod,pSpr,aRay,twee):
+	targetNode =target
+	aStarBody =aBod
+	playerBody=pBod
+	sprite =pSpr
+	aStarRay =aRay
+	tween =twee
+
 
 func getDistance(a, b):
 		return abs(b.x - a.x) + abs(b.y - a.y);
@@ -93,10 +103,57 @@ func pathSteps(start, stop):
 	return steps[steps.size()-1]
 
 
-func _physics_process(_delta):
+var idle=true
+var sprite_dir = 2
+var old_pos
+
+func direction_helper(new_pos, current_pos):
+	if new_pos.x<current_pos.x:
+		sprite.flip_h=true
+		return 3
+	if new_pos.x>current_pos.x:
+		sprite.flip_h=false
+		return 3
+	if new_pos.y<current_pos.y:
+		return 1
+	if new_pos.y>current_pos.y:
+		return 2
+
+
+func movement_handler():
 	if !tween.is_active():
+		if idle:
+			match sprite_dir:
+				1:
+					sprite.play("UpIdle")
+				2:
+					sprite.play("Idle")
+				3:
+					sprite.play("SideIdle")
+
+		idle=false
+		
 		var new_position=pathFind(playerBody.position,targetNode.position)
-		tween.interpolate_property ( playerBody, 'position', playerBody.position, new_position, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		tween.start()
+		
+		if new_position==playerBody.position:
+			idle=true
+			sprite_dir=2
+		else:
+			sprite_dir = direction_helper(new_position,playerBody.position)
+		
+		if !idle:
+			old_pos=playerBody.position
+			playerBody.position=new_position
+			sprite.position-=playerBody.position-old_pos
+			tween.interpolate_property( sprite, 'position', sprite.position, sprite.position+(playerBody.position-old_pos), 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			tween.start()
+	else:
+		match sprite_dir:
+			1:
+				sprite.play("Up")
+			2:
+				sprite.play("Down")
+			3:
+				sprite.play("Side")
 
 

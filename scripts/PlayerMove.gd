@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const PlayerMovement = preload("res://scripts/PlayerMovement.gd")
+const PlayerMovement = preload("res://scripts/classes/PlayerMovement.gd")
 
 
 onready var sprite = get_node("AnimatedSprite")
@@ -16,11 +16,12 @@ var inputs={
 	'right': Vector2.RIGHT,
 }
 
+var speed=0.3
 
 var moveHandler
 
 func _ready():
-	moveHandler=PlayerMovement.new(body,tween,ray,sprite,inputs)
+	moveHandler=PlayerMovement.new(body,tween,ray,sprite,inputs,speed)
 
 func _unhandled_input(_event):
 	moveHandler.handleInput()
