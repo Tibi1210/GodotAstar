@@ -99,7 +99,7 @@ func pathSteps(start, stop):
 		steps.append(current)
 		current=current.parent
 	if(steps.empty()):
-		return stop
+		return start
 	return steps[steps.size()-1]
 
 
@@ -134,14 +134,19 @@ func movement_handler():
 		idle=false
 		
 		var new_position=pathFind(playerBody.position,targetNode.position)
-		if new_position==null:
-			new_position=playerBody.position
 		
-		if new_position==playerBody.position:
-			idle=true
-			sprite_dir=2
-		else:
-			sprite_dir = direction_helper(new_position,playerBody.position)
+		match new_position:
+			targetNode.position:
+				idle=true
+				sprite_dir=2
+			playerBody.position:
+				idle=true
+				sprite_dir=2
+			null:
+				new_position=playerBody.position
+			_:
+				sprite_dir = direction_helper(new_position,playerBody.position)
+
 		
 		if !idle:
 			old_pos=playerBody.position
