@@ -134,6 +134,8 @@ func movement_handler():
 		idle=false
 		
 		var new_position=pathFind(playerBody.position,targetNode.position)
+		if new_position==null:
+			new_position=playerBody.position
 		
 		if new_position==playerBody.position:
 			idle=true
