@@ -1,7 +1,7 @@
 extends Node2D
 
 const MyNodes = preload("res://scripts/classes/MyNodes.gd")
-const AstarFinal = preload("res://scripts/classes/AstarFinal.gd")
+const AstarCompanion = preload("res://scripts/classes/AstarCompanion.gd")
 
 const GRID_SIZE=32
 
@@ -15,7 +15,7 @@ onready var tween = get_node("Tween")
 var aStar
 
 func _ready():
-	aStar=AstarFinal.new(targetNode,aStarBody,playerBody,sprite,aStarRay,tween)
+	aStar=AstarCompanion.new(targetNode,aStarBody,playerBody,sprite,aStarRay,tween)
 
 func _physics_process(_delta):
 	aStar.movement_handler()

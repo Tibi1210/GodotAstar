@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "AstarCompanion",
+"language": "GDScript",
+"path": "res://scripts/classes/AstarCompanion.gd"
+}, {
+"base": "Reference",
 "class": "AstarFinal",
 "language": "GDScript",
 "path": "res://scripts/classes/AstarFinal.gd"
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://scripts/classes/PlayerMovement.gd"
 } ]
 _global_script_class_icons={
+"AstarCompanion": "",
 "AstarFinal": "",
 "CharcterAnimationChange": "",
 "MyNodes": "",
