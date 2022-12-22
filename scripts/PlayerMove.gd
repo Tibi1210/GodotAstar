@@ -2,12 +2,10 @@ extends KinematicBody2D
 
 const PlayerMovement = preload("res://scripts/classes/PlayerMovement.gd")
 
-
 onready var sprite = get_node("AnimatedSprite")
 onready var ray = get_node("RayCast2D")
 onready var tween = get_node("Tween")
 onready var body = self
-
 
 var inputs={
 	'up' : Vector2.UP,

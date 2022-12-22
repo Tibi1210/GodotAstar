@@ -7,7 +7,6 @@ onready var ray = get_node("RayCast2D")
 onready var tween = get_node("Tween")
 onready var body = self
 
-
 var inputs={
 	'ui_up' : Vector2.UP,
 	'ui_down': Vector2.DOWN,
