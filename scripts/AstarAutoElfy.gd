@@ -1,6 +1,5 @@
 extends Node2D
 
-const MyNodes = preload("res://scripts/classes/MyNodes.gd")
 const AstarFinal = preload("res://scripts/classes/AstarFinal.gd")
 
 const GRID_SIZE=32

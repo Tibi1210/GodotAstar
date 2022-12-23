@@ -8,10 +8,10 @@ onready var tween = get_node("Tween")
 onready var body = self
 
 var inputs={
-	'up' : Vector2.UP,
-	'down': Vector2.DOWN,
-	'left': Vector2.LEFT,
-	'right': Vector2.RIGHT,
+	'ui_up' : Vector2.UP,
+	'ui_down': Vector2.DOWN,
+	'ui_left': Vector2.LEFT,
+	'ui_right': Vector2.RIGHT,
 }
 
 var speed=0.3
